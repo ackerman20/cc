@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Widget Example</title>
+</head>
+<body>
+    <div id="chat-widget"></div>
+    <input type="text" id="amazeKeyInput" placeholder="請輸入您的 amazeKey">
+    <button id="updateAmazeKey">更新 amazeKey</button>
+    
+    <script type="module">
+        import { render } from "https://chatwidget.ai-amaze.com/messenger.mjs";
+
+        // 初始的 amazeKey，可以是一個空字串
+        let amazeKey = "";
+
+        const chatWidgetOptions = {
+            prompt: "哈囉，你好",
+            amazeKey: amazeKey, // 使用動態的 amazeKey
+            language: "zh-TW"
+        };
+
+        const chatWidgetContainer = document.getElementById("chat-widget");
+
+        // 渲染聊天小工具
+        function renderChatWidget() {
+            render(chatWidgetOptions, chatWidgetContainer);
+        }
+
+        // 當按鈕被點擊時，更新 amazeKey 並重新渲染小工具
+        const updateAmazeKeyButton = document.getElementById("updateAmazeKey");
+        const amazeKeyInput = document.getElementById("amazeKeyInput");
+
+        updateAmazeKeyButton.addEventListener("click", function () {
+            amazeKey = amazeKeyInput.value;
+            chatWidgetOptions.amazeKey = amazeKey;
+            renderChatWidget();
+        });
+
+        // 初始渲染
+        renderChatWidget();
+    </script>
+</body>
+</html>
+<!-- 88e2f37e73154f28b63571fce5f80daf-->
